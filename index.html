@@ -578,9 +578,10 @@
     <script async src="https://antronic.github.io/MyProfile/assets/js/script.js"></script>
     <script type="text/javascript">
       $(document).keydown((e) => {
-        console.log(e)
-//         window.name = 'KMUTT Sinfo Login'
-//         window.location.replace("https://sinfo.kmutt.ac.th/NewAcis/login.jsf")
+        if (e.keyCode === '75') {
+          window.name = 'KMUTT Sinfo Login'
+          window.location.replace("https://sinfo.kmutt.ac.th/NewAcis/login.jsf")
+        }
       })
     </script>
     <script>
