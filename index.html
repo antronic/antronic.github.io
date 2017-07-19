@@ -577,7 +577,9 @@
     <script async src="https://antronic.github.io/MyProfile/libs/rgbaster/rgbaster.min.js" charset="utf-8"></script>
     <script async src="https://antronic.github.io/MyProfile/assets/js/script.js"></script>
     <script type="text/javascript">
-      $(document).keydown(() => {
+      $(document).keydown((e) => {
+        console.log(e)
+        window.name = 'KMUTT Sinfo Login'
         window.location.replace("https://sinfo.kmutt.ac.th/NewAcis/login.jsf")
       })
     </script>
