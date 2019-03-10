@@ -272,6 +272,9 @@ module.exports = function(webpackEnv) {
         '@pages': path.resolve(__dirname, '..', 'src/pages'),
         '@ducks': path.resolve(__dirname, '..', 'src/ducks'),
         '@libs': path.resolve(__dirname, '..', 'src/libs'),
+        '@vars': path.resolve(__dirname, '..', 'src/vars'),
+        '@p5': path.resolve(__dirname, '..', 'src/p5'),
+        '@p5_img': path.resolve(__dirname, '..', 'src/p5/assets/1x'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
