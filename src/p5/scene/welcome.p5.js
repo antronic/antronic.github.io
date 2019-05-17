@@ -21,6 +21,7 @@ const Welcome = function (p5, props) {
   photo.y = photo.placeOnTop(desk)
   photo.updateProp()
 
+  console.log(this)
   return {
     name: 'Welcome Scene',
     render: function() {

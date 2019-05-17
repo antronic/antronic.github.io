@@ -70,8 +70,6 @@ export function Photo() {
   this._ry = this.ry
 
   this.show = function() {
-    p.ambientLight(190)
-    p.pointLight(255, 255, 255, p.mouseX - p.width / 2, p.mouseY - p.height / 2, 200);
     p.angleMode(p.DEGREES)
     p.push()
     p.noStroke()

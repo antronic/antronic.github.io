@@ -1,4 +1,6 @@
-import Welcome from '@p5/scene/welcome.p5'
+import routes from '@p5/routes.p5'
+
+console.log(routes)
 
 export default {
   fonts: {
@@ -14,7 +16,5 @@ export default {
     job_img: require('@p5/assets/wall-extend.jpg'),
     'wood-texture_1083-21': require('@p5/assets/wood-texture_1083-21.jpg'),
   },
-  routes: {
-    '/welcome': Welcome,
-  },
+  routes,
 }

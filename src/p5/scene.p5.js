@@ -1,7 +1,15 @@
+import store from '@ducks'
+
+// Just a template
 const Scene = function(p5) {
   return {
     p5,
     name: 'untitled_scene',
+
+    props: store.getState(),
+    dispatch: function(action) {
+      store.dispatch(action)
+    },
 
     preload: function () { },
     setup: function () { },

@@ -127,5 +127,11 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "postcss-jsx": "^0.36.0",
+    "stylelint": "stylelint/stylelint",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.7.0"
   }
 }

@@ -1,3 +1,6 @@
+import __p5 from 'p5'
+
+import store from '@ducks'
 import config from '@p5/config.p5'
 
 // customize forEach
@@ -75,6 +78,13 @@ function Story(p5, propsInitial) {
 
   var props = propsInitial.canvas
 
+  store.subscribe(() => {
+    const states = store.getState()
+    console.log('states')
+    console.log(states)
+  })
+
+  // Assign 404
   const routes = Object.assign({}, {
     '404': function(p5) {
       return {
@@ -91,11 +101,14 @@ function Story(p5, propsInitial) {
   const story = {
     parentNode: document.createElement('div'),
 
+    // Router Function
+    // Need to sperate in future
     router: function(props) {
       if (!routes[props.path])
         return routes['404'](p5)
       return routes[props.path](p5, props)
     },
+
     props: props,
 
     init: function() {
@@ -117,7 +130,18 @@ function Story(p5, propsInitial) {
       }
 
       p5.draw = () => {
+        p5.ambientLight(200)
+        p5.pointLight(255, 255, 255, p5.mouseX - p5.width / 2, p5.mouseY - p5.height / 2, 50);
+
+        p5.push()
+        p5.noStroke()
         p5.background(p5.color('#FFE5E6'))
+
+        p5.pointLight(255, 255, 255, 0, 0, 10);
+        p5.ambientMaterial(p5.color('#FFE5E6'))
+        p5.translate(0, 0, -20)
+        p5.plane(p5.width + 45, p5.height + 45)
+        p5.pop()
 
         // console.log(props)
         this.scene.render()

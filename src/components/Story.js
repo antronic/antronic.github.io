@@ -22,6 +22,7 @@ class Story extends Component {render() {
 }
 
 const mapStateToProps = state => ({
+  // Props for canvas
   canvas: {
     path: state.router.path,
   },
