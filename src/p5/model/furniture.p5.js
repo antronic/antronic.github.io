@@ -1,3 +1,5 @@
+import { canvas } from '@p5/story.p5'
+
 import Model from '@p5/legacy/Model.p5'
 import { PRIMARY } from '@vars/color'
 
@@ -87,8 +89,6 @@ export function Photo() {
     p.texture(job_img)
     p.plane(this.width - 25, this.height - 25)
     p.pop()
-
-    this.mouseHover()
   }
 
   this.updateProp = function () {
@@ -106,6 +106,10 @@ export function Photo() {
     }
   }
 
+  this.onClick = function() {
+    console.log('clicked')
+  }
+
   this.dropDown = function() {
     if (this.y < this._y)  {
       this.y += 5
@@ -118,6 +122,9 @@ export function Photo() {
   }
 
   this.update = function() {
+    // Event Observer
+    this.mouseClick()
+
     if (!this.mouseHover())
       this.dropDown()
   }

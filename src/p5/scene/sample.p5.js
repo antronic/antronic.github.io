@@ -1,4 +1,4 @@
-import { connect } from '@p5/scene.p5'
+import { connect } from '@p5/lib/scene.p5'
 import Text from '@p5/text.p5'
 
 const Sample = function(p5, props) {

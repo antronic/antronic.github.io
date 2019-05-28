@@ -1,6 +1,8 @@
-import { _p5, forEach, Font, Image } from '@p5/story.p5'
+import { _p5, canvas, Font, Image } from '@p5/story.p5'
 
 export default function Model() {
+  console.log(canvas)
+
   this.p5 = _p5
   this.name = 'untitled_model'
   this.components = []
@@ -40,11 +42,22 @@ Model.prototype.getCenter = function() {
 Model.prototype.placeOnTop = function(model) {
   return model.y - (this.height / 2) - (model.height / 2)
 }
+
+// Event
 Model.prototype.onMouseHover = function() {}
+Model.prototype.onClick = function() {}
+
+Model.prototype.mouseOn = function() {
+  return (
+    this.p5.mouseX > this._x - (this.width / 2) + this.p5.width / 2
+    && this.p5.mouseX < this._x + (this.width / 2) + this.p5.width / 2
+
+    && this.p5.mouseY > this._y - (this.height / 2) + this.p5.height / 2
+    && this.p5.mouseY < this._y + (this.height / 2) + this.p5.height / 2
+  )
+}
 
 Model.prototype.mouseHover = function() {
-  // console.log('this.p5.mouseX', this.p5.mouseX)
-  // console.log('this.x', this.x)
   if (this.p5.mouseX > this._x - (this.width / 2) + this.p5.width / 2
     && this.p5.mouseX < this._x + (this.width / 2) + this.p5.width / 2
 
@@ -55,6 +68,14 @@ Model.prototype.mouseHover = function() {
   }
 
   return false
+}
+
+Model.prototype.mouseClick = function() {
+  canvas.mousePressed(() => {
+    if (this.mouseHover()) {
+      alert('meow')
+    }
+  })
 }
 
 Model.prototype.preload = function() {}

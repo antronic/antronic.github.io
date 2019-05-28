@@ -5,9 +5,11 @@ import {
 } from 'redux'
 
 import router from '@ducks/reducers/router'
+import content from '@ducks/reducers/content'
 
 const reducers = combineReducers({
   router,
+  content,
 })
 
 const composeEnhancers =

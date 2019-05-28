@@ -1,40 +1,60 @@
-import { connect } from '@p5/scene.p5'
+import Scene, { connect } from '@p5/lib/scene.p5'
 import { TreePot, Desk, Photo } from '@p5/model/furniture.p5'
 import Text from '@p5/text.p5'
 import { PRIMARY } from '@vars/color'
 
-const Welcome = function (p5, props) {
-  const treePot = new TreePot()
-  const hi = new Text('Hi!')
-  const desk = new Desk()
-  const photo = new Photo()
+let treePot
+let hi
+let testContent
+let desk
+let photo
 
-  hi.color = PRIMARY
-  hi.font = 'fira_m'
-  hi.fontSize = 72
-  hi.y = -100
-  hi.updateProp()
+class Welcome extends Scene {
+  state = {}
 
-  desk.x = 300
+  setup() {
+    treePot = new TreePot()
+    hi = new Text('Hi!')
+    desk = new Desk()
+    photo = new Photo()
+    testContent = new Text(this.props.content.test_content)
 
-  photo.x = desk.getCenterX() / 2
-  photo.y = photo.placeOnTop(desk)
-  photo.updateProp()
+    hi.color = PRIMARY
+    hi.font = 'fira_m'
+    hi.fontSize = 72
+    hi.y = -100
+    hi.updateProp()
 
-  console.log(this)
-  return {
-    name: 'Welcome Scene',
-    render: function() {
-      hi.render()
-      treePot.show()
-      desk.show()
+    desk.x = 300
 
-      photo.show()
-      photo.update()
+    photo.x = desk.getCenterX() / 2
+    photo.y = photo.placeOnTop(desk)
+    photo.updateProp()
+  }
 
-      treePot.update()
-    },
+  dynamic() {
+    testContent.text = this.props.content.test_content
+  }
+
+  render() {
+    this.p5.background('#FCF2F2')
+
+    hi.render()
+    // testContent.render()
+
+    treePot.show()
+    desk.show()
+
+    photo.show()
+    photo.update()
+
+    treePot.update()
   }
 }
 
-export default connect(Welcome)
+const mapStateToProps = (state) => ({
+  router: state.router,
+  content: state.content,
+})
+
+export default connect(mapStateToProps)(Welcome)

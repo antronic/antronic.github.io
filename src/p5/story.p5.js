@@ -1,5 +1,3 @@
-import __p5 from 'p5'
-
 import store from '@ducks'
 import config from '@p5/config.p5'
 
@@ -11,6 +9,8 @@ export function forEach(arr, callback) {
 }
 
 export var _p5
+export var canvas
+
 var fonts = {}
 var imgs = {}
 
@@ -104,9 +104,14 @@ function Story(p5, propsInitial) {
     // Router Function
     // Need to sperate in future
     router: function(props) {
+      this.currentScene()
       if (!routes[props.path])
         return routes['404'](p5)
-      return routes[props.path](p5, props)
+      return new routes[props.path](props)
+    },
+
+    currentScene() {
+      return routes[this.props.path]
     },
 
     props: props,
@@ -120,13 +125,16 @@ function Story(p5, propsInitial) {
         Image.loadImages(p5)
       }
       p5.setup = () => {
-        p5.createCanvas(this.parentNode.offsetWidth, this.parentNode.offsetHeight, p5.WEBGL)
+        canvas = p5.createCanvas(this.parentNode.offsetWidth, this.parentNode.offsetHeight, p5.WEBGL)
 
         this.canvas = this.parentNode.children[0]
         this.canvas.style.width = '100%'
         this.canvas.style.height = '100%'
 
         this.scene = this.router(this.props)
+        this.scene.setup()
+
+        if (this.currentScene().prototype.dynamic) this.scene.dynamic()
       }
 
       p5.draw = () => {
@@ -143,7 +151,6 @@ function Story(p5, propsInitial) {
         p5.plane(p5.width + 45, p5.height + 45)
         p5.pop()
 
-        // console.log(props)
         this.scene.render()
       }
 
